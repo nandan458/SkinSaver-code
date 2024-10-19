@@ -1,4 +1,4 @@
-ultralytics
-streamlit
-pillow
-streamlit_lottie
+ultralytics == 8.3.15
+streamlit == 1.37.1
+pillow == 10.4.0
+streamlit_lottie == 0.0.5
