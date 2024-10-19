@@ -1,14 +1,27 @@
-# SkinSaver-code
 import streamlit as st
 from PIL import Image
+from ultralytics import YOLO
+import requests
+from streamlit_lottie import st_lottie
 
-# # Load the model
-# 	@st.cache_resource
-# 	def models():
-# 	    mod = YOLO('best.pt')
-# 	    return mod
+# Load the model
+@st.cache_resource
+def models():
+    mod = YOLO('best.pt')
+    return mod
 
-st.set_page_config(page_title="SkinSaver",layout="wide")
+st.set_page_config(page_title="SkinSaver", layout="wide")
+
+# Function to load Lottie animation
+@st.cache_resource
+def load_lottie_url(url):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+# Load animations
+lottie_skin_care = load_lottie_url("https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json")
 
 # Define the data for the skin conditions
 skin_conditions = [
@@ -29,119 +42,115 @@ skin_conditions = [
         "description": "Psoriasis is an autoimmune condition that speeds up the growth cycle of skin cells, resulting in thick, scaly patches of skin that can be itchy and painful.",
         "prevention_treatment": "Prevent by managing stress, avoiding skin trauma, and using moisturizers. Treatments may include topical treatments, phototherapy, and systemic medications.",
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Psoriasis.jpg/640px-Psoriasis.jpg"
-
-
-    }
-
-    { "name": "Pigment",
-         "description": "Pigment conditions are characterized by changes in skin color. Common examples include: - Melasma: Dark, discolored patches often found on the face. Freckles: Small, brown spots usually caused by sun exposure. Freckles: Small, brown spots usually caused by sun exposure.",
-         "prevention_treatment":  "- Use sunscreen daily to protect against UV rays. - Avoid excessive sun exposure, especially during peak hours.- Consider wearing protective clothing, such as hats and long sleeves.- Consult a dermatologist for skin treatments and preventive measures."
-        
     },
-
-    {"name":"Belign",
-        "description": "Benign skin conditions are non-cancerous and usually do not pose a serious health risk. Examples include:- Moles: Common growths on the skin that are usually harmless.- Seborrheic Keratosis: Non-cancerous growths that often appear as rough, scaly patches.- Cysts: Fluid-filled sacs that can form under the skin, usually harmless.",
-      "prevention_treatment": "- Monitor your skin regularly for changes in moles or new growths.  - Maintain good skin hygiene to reduce the risk of cysts.  - Use moisturizers to keep the skin healthy and hydrated.  - Avoid picking at or irritating existing skin growths."
-    },
-
     {
-    "name": "Malign",
-        "description":" Malignant skin conditions are cancerous and can be life-threatening. Important types include:- Melanoma: A serious form of skin cancer that arises from pigment-producing cells."
-    "- Basal Cell Carcinoma**: The most common form of skin cancer, usually appearing as a small, shiny bump."
-    "- Squamous Cell Carcinoma**: Often appears as a firm, red nodule or a flat lesion with a scaly crust.",
-    "prevention_treatment": "- Apply broad-spectrum sunscreen with SPF 30 or higher.- Conduct regular skin self-exams to detect any changes early. - Schedule annual skin checks with a dermatologist.- Avoid tanning beds and limit sun exposure."
+        "name": "Pigment",
+        "description": "Pigment conditions are characterized by changes in skin color. Common examples include: - Melasma: Dark, discolored patches often found on the face. Freckles: Small, brown spots usually caused by sun exposure.",
+        "prevention_treatment": "- Use sunscreen daily to protect against UV rays. - Avoid excessive sun exposure, especially during peak hours.- Consider wearing protective clothing, such as hats and long sleeves.- Consult a dermatologist for skin treatments and preventive measures.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Psoriasis.jpg/640px-Psoriasis.jpg"
+    },
+    {
+        "name": "Malignant",
+        "description": "Malignant skin conditions are cancerous and can be life-threatening. Important types include: - Melanoma: A serious form of skin cancer that arises from pigment-producing cells. - Basal Cell Carcinoma: The most common form of skin cancer, usually appearing as a small, shiny bump. - Squamous Cell Carcinoma: Often appears as a firm, red nodule or a flat lesion with a scaly crust.",
+        "prevention_treatment": "- Apply broad-spectrum sunscreen with SPF 30 or higher.- Conduct regular skin self-exams to detect any changes early. - Schedule annual skin checks with a dermatologist.- Avoid tanning beds and limit sun exposure.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Psoriasis.jpg/640px-Psoriasis.jpg"
+    },
+    {
+        "name": "Benign",
+        "description": "Benign skin conditions are non-cancerous and usually do not pose a serious health risk. Examples include:- Moles: Common growths on the skin that are usually harmless.- Seborrheic Keratosis: Non-cancerous growths that often appear as rough, scaly patches.- Cysts: Fluid-filled sacs that can form under the skin, usually harmless.",
+        "prevention_treatment": "- Monitor your skin regularly for changes in moles or new growths.  - Maintain good skin hygiene to reduce the risk of cysts.  - Use moisturizers to keep the skin healthy and hydrated.  - Avoid picking at or irritating existing skin growths.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Psoriasis.jpg/640px-Psoriasis.jpg"
     }
 ]
 
 
 def welcome_page():
-    with st.container():
-        col = st.columns([3,9])
-        #col[0].write("logo")
-        col[0].image('logo.png')
-        col[1].text('')
-        col[1].text('')
-        col[1].text('')
-        col[1].text('')
-        col[1].markdown("<h1 style='text-align: center; color: white;'>SkinSaver - Skin Disease Detection</h1>", unsafe_allow_html=True)
-	    
-    st.write(
-        """
-        Skin diseases are conditions that affect your skin and can cause symptoms like bumps, scaly or rough skin, and more. Some common skin diseases include: 
-        \n**Eczema, Acne, Pigment, Benign and Malignant tumors**
-        \nSkin diseases can be caused by a number of things, including:
-        """)
+    # with st.container():
+    #     col = st.columns([3, 9])
+    #     col[0].image('logo.png', width=100)
+    #     col[1].markdown("<h1 style='text-align: center; color: #FFA07A;'>SkinSaver - Skin Disease Detection</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #FFA07A;'>SkinSaver - Skin Disease Detection</h1>", unsafe_allow_html=True)
+    st.write("""---""")
+    col = st.columns(2)
+    with col[1]:
+        if lottie_skin_care:
+            st_lottie(lottie_skin_care, height=300, key="skin_care_animation")
+    with col[0]:
+        st.markdown("### Intoduction:")
+        st.markdown(
+            """
+            **SkinSaver** is a tool designed to help you better understand skin conditions and manage your skin health effectively. 
+            
+            Skin diseases can present with symptoms like redness, itching, bumps, and more. 
+            
+            Some common skin conditions include: **Eczema, Acne, Pigment disorders, Benign and Malignant tumors**.
+            """
+        )
+    
     st.markdown(
         """
-        - Bacteria trapped in your pores or hair follicles 
-        - Conditions that affect your thyroid, kidneys, or immune system 
-        - Contact with environmental triggers, such as allergens or another person's skin 
-        - Genetics
+        ### Common Causes of Skin Conditions:
+        - Bacteria trapped in pores or hair follicles.
+        - Conditions affecting the thyroid, kidneys, or immune system.
+        - Contact with environmental triggers, such as allergens.
+        - Genetics and family history.
+        - Stress and hormonal imbalance.
+        
+        Keeping your skin healthy requires protective measures, good skincare habits, and reducing stress levels.
         """
     )
-    st.write(
-        """
-        Psychological stress can also impact your skin health by triggering the release of hormones that can lead to inflammation, which can exacerbate existing skin conditions. 
-        \nTo keep your skin healthy, you can try wearing protective equipment, cleaning cuts and scrapes right away, and using sunscreen when outdoors.
-        """
-    )
+    
+    st.markdown("""---""")
+
     # Streamlit application
     st.title("Skin Conditions Overview")
+    st.write("### Click on each skin condition to learn more!")
 
-    # Create columns
-    col1, col2, col3, col4, col5, col6= st.columns(6)
+    # Create two columns for buttons and details
+    col1, col2 = st.columns([1, 3])
 
-    # Loop through the conditions and populate the columns
-    for i, condition in enumerate(skin_conditions):
-        with st.container():
-            if i == 0:
-                with col1:
-                    st.subheader(condition["name"])
-                    st.write("**Description:**", condition["description"])
-                    st.write("**Prevention and Treatment:**", condition["prevention_treatment"])
-                    st.image(condition["image"], use_column_width=True)
-            elif i == 1:
-                with col2:
-                    st.subheader(condition["name"])
-                    st.write("**Description:**", condition["description"])
-                    st.write("**Prevention and Treatment:**", condition["prevention_treatment"])
-                    st.image(condition["image"], use_column_width=True)
-            elif i == 2:
-                with col3:
-                    st.subheader(condition["name"])
-                    st.write("**Description:**", condition["description"])
-                    st.write("**Prevention and Treatment:**", condition["prevention_treatment"])
-                    st.image(condition["image"], use_column_width=True)
-            elif i == 3:
-                with col4:
-                    st.subheader(condition["name"])
-                    st.write("**Description:**", condition["description"])
-                    st.write("**Prevention and Treatment:**", condition["prevention_treatment"])
-                    st.image(condition["image"], use_column_width=True)
-            elif i == 4:
-                with col5:
-                    st.subheader(condition["name"])
-                    st.write("**Description:**", condition["description"])
-                    st.write("**Prevention and Treatment:**", condition["prevention_treatment"])
-                    st.image(condition["image"], use_column_width=True)
-            elif i == 5:
-                with col6:
-                    st.subheader(condition["name"])
-                    st.write("**Description:**", condition["description"])
-                    st.write("**Prevention and Treatment:**", condition["prevention_treatment"])
-                    st.image(condition["image"], use_column_width=True)
+    # Variable to keep track of the selected condition
+    selected_condition = None
 
+    # Loop through the conditions and create buttons in the first column
+    with col1:
+        for condition in skin_conditions:
+            if st.button(condition["name"], key=condition["name"]):
+                selected_condition = condition
+
+    # Display details of the selected condition in the second column
+    with col2:
+        if selected_condition:
+            show_condition_details(selected_condition)
+
+    st.markdown(
+            """
+            **Let's explore and understand skin health together!**
+            """
+        )
     
+    st.video("https://www.youtube.com/watch?v=oUEokMaqOeY", start_time=5)
+
+
+def show_condition_details(condition):
+    st.markdown(f"## {condition['name']}")
+    st.image(condition["image"], use_column_width=True)
+    with st.expander("Description"):
+        st.write(condition["description"])
+    with st.expander("Prevention and Treatment"):
+        st.write(condition["prevention_treatment"])
+    st.markdown("""---""")
+
 
 def scan_page():
-
-    st.subheader('Steps to use the app')
+    st.subheader('Steps to Use the App')
     st.markdown('''
-	- Take a clear image
-	- Upload the image
-	- Analyze the image and the name and confidence level of the disease along with the causes, preventions, and remedies will be displayed in the result panel below''')
-	
-	# Image upload and analysis section
+        1. Take a clear image of the affected skin area.
+        2. Upload the image below.
+        3. Click "Analyze" to detect the skin condition and get detailed insights.
+    ''')
+
+    # Image upload and analysis section
     with st.container():
         img = st.file_uploader('Upload your image', type=['jpg', 'png', 'jpeg'])
         analyse = st.button('Analyze')
@@ -149,38 +158,43 @@ def scan_page():
     if analyse:
         if img is not None:
             image = Image.open(img)
-            st.image(image)
-	        # st.subheader('Your skin is affected by:')
-	        # model = models()
-	        # res = model.predict(img)
-	        # label = res[0].probs.top5
-	        # conf = res[0].probs.top5conf
-	        # conf = conf.tolist()
-	        # st.write('Disease: ' + str(res[0].names[label[0]].title()))
-	        # st.write('Confidence level: ' + str(conf[0]))
-    
+            st.image(image, caption="Uploaded Image", use_column_width=True)
+            st.subheader('Analysis Results:')
+            model = models()
+            res = model.predict(img)
+            label = res[0].probs.top5
+            conf = res[0].probs.top5conf
+            conf = conf.tolist()
+            st.write('**Disease Detected**: ' + str(res[0].names[label[0]].title()))
+            st.write('**Confidence Level**: ' + str(round(conf[0] * 100, 2)) + '%')
+        else:
+            st.error("Please upload an image for analysis.")
+
+
 def about_me_page():
-
-
     st.title("About Skin Saver")
     st.write(
-     """
-     Skin Saver is designed to help people learn more about their skin manage it.
-     Developed by Nandan Kommineni. A highschool freshman whose goal is to help people manage their skin and feel confident about themselves. 
-    My motivation for this project was to help others struggling with these skin conditions and help people be more confiodent about themselves and raise awareness about these conditions.
-    For more information, visit SkinSaver.com or contact us at nandankomm@gmail.com. 
-     """)
+        """
+        SkinSaver is designed to help people learn more about their skin and manage it effectively.
+        
+        Developed by **Nandan Kommineni**, a high school freshman with a passion for technology and helping others.
+        
+        My motivation for this project is to help those struggling with skin conditions feel more confident about themselves and raise awareness about these conditions.
+        
+        **For more information, visit [SkinSaver.com](http://skinsaver.com) or contact us at nandankomm@gmail.com**
+        """
+    )
     st.image('image.png', caption="My Picture", use_column_width=True)
-     
 
-    
 
 def main():
-    tab1, tab2, tab3 = st.tabs(["Welcome","Scan","About Me"])
+    tab1, tab2, tab3 = st.tabs(["Home", "Scan", "About Me"])
     with tab1:
         welcome_page()
     with tab2:
         scan_page()
     with tab3:
         about_me_page()
+
+
 main()
