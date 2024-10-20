@@ -29,37 +29,37 @@ skin_conditions = [
         "name": "Acne",
         "description": "Acne is a common skin condition that occurs when hair follicles become clogged with oil and dead skin cells. It often causes pimples, blackheads, and cysts.",
         "prevention_treatment": "Prevent by maintaining a good skincare routine, using non-comedogenic products, and avoiding excessive touching of the face. Treatment may include topical treatments, oral medications, and lifestyle changes.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Acne_1.jpg/640px-Acne_1.jpg"
+        "image": "https://dermablue.com/wp-content/uploads/2018/01/AdobeStock_61720335-scaled.jpeg"
     },
     {
         "name": "Eczema",
         "description": "Eczema, or atopic dermatitis, is a condition that makes your skin red and inflamed, and it can cause itching and dryness.",
         "prevention_treatment": "Prevent by avoiding irritants, using moisturizers regularly, and managing stress. Treatments often involve topical corticosteroids, emollients, and avoiding triggers.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Eczema_Hyperpigmentation.jpg/640px-Eczema_Hyperpigmentation.jpg"
+        "image": "https://skinandcancercenterofarizona.com/wp-content/uploads/2023/05/Eczema-Treatment.webp"
     },
     {
         "name": "Psoriasis",
         "description": "Psoriasis is an autoimmune condition that speeds up the growth cycle of skin cells, resulting in thick, scaly patches of skin that can be itchy and painful.",
         "prevention_treatment": "Prevent by managing stress, avoiding skin trauma, and using moisturizers. Treatments may include topical treatments, phototherapy, and systemic medications.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Psoriasis.jpg/640px-Psoriasis.jpg"
+        "image": "https://www.vistadermsa.com/wp-content/uploads/2020/05/Psoriasis-scaled-e1588772611595.jpg"
     },
     {
         "name": "Pigment",
         "description": "Pigment conditions are characterized by changes in skin color. Common examples include: - Melasma: Dark, discolored patches often found on the face. Freckles: Small, brown spots usually caused by sun exposure.",
         "prevention_treatment": "- Use sunscreen daily to protect against UV rays. - Avoid excessive sun exposure, especially during peak hours.- Consider wearing protective clothing, such as hats and long sleeves.- Consult a dermatologist for skin treatments and preventive measures.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Psoriasis.jpg/640px-Psoriasis.jpg"
+        "image": "https://media.healthdirect.org.au/images/inline/original/vitiligo-inline-ff7d37.jpg"
     },
     {
         "name": "Malignant",
         "description": "Malignant skin conditions are cancerous and can be life-threatening. Important types include: - Melanoma: A serious form of skin cancer that arises from pigment-producing cells. - Basal Cell Carcinoma: The most common form of skin cancer, usually appearing as a small, shiny bump. - Squamous Cell Carcinoma: Often appears as a firm, red nodule or a flat lesion with a scaly crust.",
         "prevention_treatment": "- Apply broad-spectrum sunscreen with SPF 30 or higher.- Conduct regular skin self-exams to detect any changes early. - Schedule annual skin checks with a dermatologist.- Avoid tanning beds and limit sun exposure.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Psoriasis.jpg/640px-Psoriasis.jpg"
+        "image": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Melanoma.jpg"
     },
     {
         "name": "Benign",
         "description": "Benign skin conditions are non-cancerous and usually do not pose a serious health risk. Examples include:- Moles: Common growths on the skin that are usually harmless.- Seborrheic Keratosis: Non-cancerous growths that often appear as rough, scaly patches.- Cysts: Fluid-filled sacs that can form under the skin, usually harmless.",
         "prevention_treatment": "- Monitor your skin regularly for changes in moles or new growths.  - Maintain good skin hygiene to reduce the risk of cysts.  - Use moisturizers to keep the skin healthy and hydrated.  - Avoid picking at or irritating existing skin growths.",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Psoriasis.jpg/640px-Psoriasis.jpg"
+        "image": "https://www.shutterstock.com/image-photo/close-picture-dangerous-brown-nevus-600nw-1403142380.jpg"
     }
 ]
 
@@ -129,7 +129,7 @@ def welcome_page():
             """
         )
     
-    st.video("https://www.youtube.com/watch?v=oUEokMaqOeY", start_time=5)
+    st.video("https://www.youtube.com/watch?v=ryox2SQKQPU")
 
 
 def show_condition_details(condition):
