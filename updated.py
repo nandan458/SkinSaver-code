@@ -76,7 +76,7 @@ def welcome_page():
         if lottie_skin_care:
             st_lottie(lottie_skin_care, height=300, key="skin_care_animation")
     with col[0]:
-        st.markdown("### Intoduction:")
+        st.markdown("### Intoduction")
         st.markdown(
             """
             **SkinSaver** is a tool designed to help you better understand skin conditions and manage your skin health effectively. 
@@ -89,7 +89,7 @@ def welcome_page():
     
     st.markdown(
         """
-        ### Common Causes of Skin Conditions:
+        ### Common Causes of Skin Conditions
         - Bacteria trapped in pores or hair follicles.
         - Conditions affecting the thyroid, kidneys, or immune system.
         - Contact with environmental triggers, such as allergens.
@@ -103,7 +103,7 @@ def welcome_page():
     st.markdown("""---""")
 
     # Streamlit application
-    st.title("Skin Conditions Overview")
+    st.header("Skin Conditions Overview")
     st.write("### Click on each skin condition to learn more!")
 
     # Create two columns for buttons and details
