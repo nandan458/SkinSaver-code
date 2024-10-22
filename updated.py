@@ -133,8 +133,9 @@ def welcome_page():
 
 
 def show_condition_details(condition):
-    st.markdown(f"## {condition['name']}")
-    st.image(condition["image"], use_column_width=True)
+    col = st.columns([4,6])
+    col[0].markdown(f"## {condition['name']}")
+    col[1].image(condition["image"], use_column_width=True)
     with st.expander("Description"):
         st.write(condition["description"])
     with st.expander("Prevention and Treatment"):
