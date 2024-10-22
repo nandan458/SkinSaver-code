@@ -104,7 +104,7 @@ def welcome_page():
 
     # Streamlit application
     st.header("Skin Conditions Overview")
-    st.write("### Click on each skin condition to learn more!")
+    st.subheader("Click on each skin condition to learn more!")
 
     # Create two columns for buttons and details
     col1, col2 = st.columns([1, 3])
