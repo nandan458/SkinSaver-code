@@ -162,7 +162,7 @@ def scan_page():
             st.image(image, caption="Uploaded Image", use_column_width=True)
             st.subheader('Analysis Results:')
             model = models()
-            res = model.predict(img)
+            res = model.predict(image)
             label = res[0].probs.top5
             conf = res[0].probs.top5conf
             conf = conf.tolist()
