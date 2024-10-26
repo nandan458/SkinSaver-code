@@ -65,11 +65,11 @@ skin_conditions = [
 
 
 def welcome_page():
-    # with st.container():
-    #     col = st.columns([3, 9])
-    #     col[0].image('logo.png', width=100)
-    #     col[1].markdown("<h1 style='text-align: center; color: #FFA07A;'>SkinSaver - Skin Disease Detection</h1>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align: center; color: #FFA07A;'>SkinSaver - Skin Disease Detection</h1>", unsafe_allow_html=True)
+    with st.container():
+        col = st.columns([3, 9])
+        col[0].image('logo (2).png', width=100)
+        col[1].markdown("<h1 style='text-align: center; color: #FFA07A;'>SkinSaver - Skin Disease Detection</h1>", unsafe_allow_html=True)
+    #st.markdown("<h1 style='text-align: center; color: #FFA07A;'>SkinSaver - Skin Disease Detection</h1>", unsafe_allow_html=True)
     st.write("""---""")
     col = st.columns(2)
     with col[1]:
